@@ -267,7 +267,7 @@ final class Protoc {
             for (final ProtocPlugin plugin : plugins) {
                 final File pluginExecutable = plugin.getPluginExecutableFile(pluginDirectory);
                 command.add("--plugin=protoc-gen-" + plugin.getId() + '=' + pluginExecutable);
-                command.add("--" + plugin.getId() + "_out=" + javaOutputDirectory);
+                command.add("--" + plugin.getId() + "_out=lite:" + javaOutputDirectory);
             }
         }
         if (cppOutputDirectory != null) {
@@ -292,7 +292,7 @@ final class Protoc {
                 command.add("--plugin=protoc-gen-" + nativePluginId + '=' + nativePluginExecutable);
             }
 
-            String outputOption = "--" + nativePluginId + "_out=";
+            String outputOption = "--" + nativePluginId + "_out=lite:";
             if (nativePluginParameter != null) {
                 outputOption += nativePluginParameter + ':';
             }
